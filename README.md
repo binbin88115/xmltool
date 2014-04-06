@@ -2,6 +2,7 @@ xmltool
 =======
 
 a tool for cocos2dx that used to generate xml file and assosiated c++ code
+
 =======
 
 游戏客户端本地数据的存储是一个很重要的问题，一般情况下也是一个工作量挺大的模块。该工具提供一键生成xml文件及对应可读取该xml文件的c++代码。该c++代码部分使用c++11标准。因此编译器要支持C++11。
