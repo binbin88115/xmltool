@@ -32,18 +32,18 @@ XML_GENERATE_FILE = 'xml_generate.py'
 CPP_GENERATE_FILE = 'cpp_generate.py'
 
 if __name__ == '__main__':
-	xml_file_path = os.path.abspath(XML_GENERATE_FILE)
-	if not os.path.exists(xml_file_path):
-		print str.format('ERROR: not exists the "{}" file', XML_GENERATE_FILE)
-		sys.exit()
+    xml_file_path = os.path.abspath(XML_GENERATE_FILE)
+    if not os.path.exists(xml_file_path):
+        print str.format('ERROR: not exists the "{}" file', XML_GENERATE_FILE)
+        sys.exit()
 
-	cpp_file_path = os.path.abspath(CPP_GENERATE_FILE)
-	if not os.path.exists(cpp_file_path):
-		print str.format('ERROR: not exists the "{}" file', CPP_GENERATE_FILE)
-		sys.exit()
+    cpp_file_path = os.path.abspath(CPP_GENERATE_FILE)
+    if not os.path.exists(cpp_file_path):
+        print str.format('ERROR: not exists the "{}" file', CPP_GENERATE_FILE)
+        sys.exit()
 
-	if len(sys.argv) == 1:
-		print 'ERROR: please specify the *.xlsx or *.xls file as the paramter'
-	else:
-		os.system(str.format('python {} {}', XML_GENERATE_FILE, sys.argv[1]))
-		os.system(str.format('python {} {}', CPP_GENERATE_FILE, sys.argv[1]))
+    if len(sys.argv) == 1:
+        print 'ERROR: please specify the *.xlsx or *.xls file as the paramter'
+    else:
+        os.system(str.format('python {} {}', XML_GENERATE_FILE, sys.argv[1]))
+        os.system(str.format('python {} {}', CPP_GENERATE_FILE, sys.argv[1]))
