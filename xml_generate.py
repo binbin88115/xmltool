@@ -2,8 +2,8 @@
 # 该工具用于将excel文件传为xml文件
 # 被转换的excel文件需要遵守template.xlsx的标准
 # 命令格式：python xml_generate.py excel.xlsx
-#			python xml_generate.py ../directory/excel.xls
-#			python xml_generate.py directory/excel.xls
+#         python xml_generate.py ../directory/excel.xls
+#         python xml_generate.py directory/excel.xls
 
 from base import *
 

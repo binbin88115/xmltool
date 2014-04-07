@@ -2,8 +2,8 @@
 # 该工具用于生成可读取用xml_generate.py生成的xml文件的cpp文件
 # 被转换的excel文件需要遵守template.xlsx的标准
 # 命令格式：python cpp_generate.py excel.xlsx
-#			python cpp_generate.py ../directory/excel.xls
-#			python cpp_generate.py directory/excel.xls
+#         python cpp_generate.py ../directory/excel.xls
+#         python cpp_generate.py directory/excel.xls
 
 from base import *
 
