@@ -9,7 +9,7 @@ from base import *
 
 XML_HEADER     = '<?xml version="1.0" encoding="utf-8"?>'
 XML_TAB        = '  '
-XML_LINE_BREAK = '\r\n'
+XML_LINE_BREAK = '\n'
 XML_BLANK      = ''
 
 WRITE_DIRECTORY = 'xml'

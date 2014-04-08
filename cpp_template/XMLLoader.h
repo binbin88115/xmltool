@@ -19,7 +19,7 @@ public:
 	~XMLLoader();
 
 	const T* queryById(int id) const;
-	const std::vector<T*> queryByCallback(std::function<bool(const T*)> callback);
+	const std::vector<const T*> queryByCallback(std::function<bool(const T*)> callback);
 
 protected:
 	void load(const TiXmlElement* rootElement);
@@ -54,9 +54,9 @@ const T* XMLLoader<T>::queryById(int id) const
 {1}
 
 template <typename T>
-const std::vector<T*> XMLLoader<T>::queryByCallback(std::function<bool(const T*)> callback)
+const std::vector<const T*> XMLLoader<T>::queryByCallback(std::function<bool(const T*)> callback)
 {0}
-	std::vector<T*> ret;
+	std::vector<const T*> ret;
 	auto iter = m_mData.begin();
 	for (; iter != m_mData.end(); ++iter) {0}
 		if (callback(iter->second)) {0}

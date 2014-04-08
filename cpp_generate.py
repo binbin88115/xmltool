@@ -34,7 +34,7 @@ CPP_DECLARE_VAR_MARCO = 'XML_DECLARE_VAR({});'
 CPP_LOAD_FILE_MARCO   = 'LOAD_XML_FILE("{}");'
 CPP_LOAD_DATA_MARCO   = 'LOAD_TABLE_DATA({});'
 
-CPP_BRACE_FORMAT = '\t\t{0}\r\n\t\t{2}\r\n\t\t{1}'
+CPP_BRACE_FORMAT = '\t\t{0}\n\t\t{2}\n\t\t{1}'
 
 class CPPGenerate(Base):
 
@@ -62,7 +62,7 @@ class CPPGenerate(Base):
     def _xml_data_item_var_list(self, column_types, column_names):
         text = ''
         for index in range(len(column_types)):
-            text += str.format('\r\n\t{}{}{};', self._get_cpp_type(column_types[index]), 
+            text += str.format('\n\t{}{}{};', self._get_cpp_type(column_types[index]), 
                 ' ', column_names[index])
         return text
 
@@ -70,7 +70,7 @@ class CPPGenerate(Base):
         text = ''
         for index in range(len(column_types)):
             load_list = str.format(self._get_marco(column_types[index]), column_names[index])
-            text += str.format('\r\n\t{}', load_list)
+            text += str.format('\n\t{}', load_list)
         return text
 
     def _xml_data_item_h(self, class_name, column_types, column_names):
@@ -105,8 +105,8 @@ class CPPGenerate(Base):
         for row in self._output_config_table:
             item = self._xml_data_item(row[CONFIG_SHEET_NAME_COLUMN_INDEX], 
                 row[CONFIG_OUTPUT_NAME_COLUMN_INDEX])
-            ret[HEADER] += str.format('{}\r\n\r\n', item[HEADER])
-            ret[CPP] += str.format('{}\r\n', item[CPP])
+            ret[HEADER] += str.format('{}\n\n', item[HEADER])
+            ret[CPP] += str.format('{}\n', item[CPP])
         return ret
 
     def _export_xml_data(self):
@@ -128,20 +128,20 @@ class CPPGenerate(Base):
                 marc = str.format(CPP_LOAD_FILE_MARCO, file_name)
                 text = str.format('\t{}', marc)
             marc = str.format(CPP_LOAD_DATA_MARCO, row[CONFIG_OUTPUT_NAME_COLUMN_INDEX])
-            text += str.format('\r\n\t\t\t{}', marc)
+            text += str.format('\n\t\t\t{}', marc)
             texts[file_name] = text
 
         ret = ''
         for key in texts.keys():
             text = str.format(CPP_BRACE_FORMAT, CPP_LEFT_BRACE, CPP_RIGHT_BRACE, texts[key])
-            ret += str.format('\r\n{}\r\n', text)
+            ret += str.format('\n{}\n', text)
         return ret
 
     def _xml_manager_h(self):
         text = ''
         for row in self._output_config_table:
             marco = str.format(CPP_DECLARE_VAR_MARCO, row[CONFIG_OUTPUT_NAME_COLUMN_INDEX])
-            text += str.format('\t{}\r\n', marco)
+            text += str.format('\t{}\n', marco)
         return text
 
     def _export_xml_manager(self):
