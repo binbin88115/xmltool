@@ -7,7 +7,7 @@
 #include "XMLData.h"
 
 #define XML_VAR(TableName)			m_##TableName
-#define XML_DECLARE_VAR(TableName)	XMLLoader<TableName> XML_VAR(TableName)
+#define XML_DECLARE_VAR(TableName)	XMLLoader<TableName##{3}> XML_VAR(TableName)
 #define XML_DATASET(TableName)		XMLManager::sharedInstance().XML_VAR(TableName)
 #define LOAD_XML_DATA()				XMLManager::sharedInstance().loadData()
 

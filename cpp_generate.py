@@ -27,6 +27,8 @@ CPP_RIGHT_BRACE = '}'
 HEADER = 'header'
 CPP    = 'cpp'
 
+XML_ITEM_CLASS_NAME_SUFFIX = 'item'
+
 CPP_INT_LOAD_MARCO    = 'XML_SET_ATTR_INT(rowElement, "{0}", {0});'
 CPP_FLOAT_LOAD_MARCO  = 'XML_SET_ATTR_FLOAT(rowElement, "{0}", {0});'
 CPP_STRING_LOAD_MARCO = 'XML_SET_ATTR_TEXT(rowElement, "{0}", {0});'
@@ -58,6 +60,9 @@ class CPPGenerate(Base):
         elif xml_type == COLUMN_FLOAT_TYPE:
             marco = CPP_FLOAT_LOAD_MARCO
         return marco
+
+    def _xml_item_class_name(self, class_name):
+        return str.format('{}{}', class_name, XML_ITEM_CLASS_NAME_SUFFIX)
 
     def _xml_data_item_var_list(self, column_types, column_names):
         text = ''
@@ -104,7 +109,7 @@ class CPPGenerate(Base):
         ret[CPP] = ''
         for row in self._output_config_table:
             item = self._xml_data_item(row[CONFIG_SHEET_NAME_COLUMN_INDEX], 
-                row[CONFIG_OUTPUT_NAME_COLUMN_INDEX])
+                self._xml_item_class_name(row[CONFIG_OUTPUT_NAME_COLUMN_INDEX]))
             ret[HEADER] += str.format('{}\n\n', item[HEADER])
             ret[CPP] += str.format('{}\n', item[CPP])
         return ret
@@ -148,7 +153,8 @@ class CPPGenerate(Base):
         header = self._get_cpp_template(TEMPLATE_XML_MANAGER_H)
         cpp = self._get_cpp_template(TEMPLATE_XML_MANAGER_CPP)
 
-        header = str.format(header, CPP_LEFT_BRACE, CPP_RIGHT_BRACE, self._xml_manager_h())
+        header = str.format(header, CPP_LEFT_BRACE, CPP_RIGHT_BRACE, 
+            self._xml_manager_h(), XML_ITEM_CLASS_NAME_SUFFIX)
         cpp = str.format(cpp, CPP_LEFT_BRACE, CPP_RIGHT_BRACE, self._xml_manager_cpp())
         self._write_cpp(TEMPLATE_XML_MANAGER_H, header)
         self._write_cpp(TEMPLATE_XML_MANAGER_CPP, cpp)
